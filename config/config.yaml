@@ -1,0 +1,60 @@
+# Database Configuration
+database:
+  surrealdb:
+    host: "127.0.0.1"
+    port: 8000
+    namespace: "hybridrag"
+    database: "knowledge_base"
+    username: "root"
+    password: "root"
+    
+# OpenAI Configuration (using Ollama via OpenWebUI)
+openai:
+  api_key: "${OPENAI_API_KEY}"
+  base_url: "${OPENAI_BASE_URL}"
+  model: "gpt-3.5-turbo"
+  temperature: 0.1
+  max_tokens: 10000
+  embedding_model: "all-minilm:latest"
+  embedding_dimensions: 384
+
+# Embedding Configuration
+embeddings:
+  provider: "huggingface"  # Options: "openai", "huggingface"
+  huggingface:
+    model_name: "all-MiniLM-L6-v2"
+    device: "cpu"  # Options: "cpu", "cuda"
+    dimensions: 384
+
+# Vector Search Configuration
+vector_search:
+  similarity_threshold: 0.7
+  max_results: 10
+  index_type: "hnsw"
+  distance_metric: "cosine"
+
+# Document Processing
+document_processing:
+  chunk_size: 1000
+  chunk_overlap: 200
+  max_file_size_mb: 50
+  supported_formats: ["txt", "md", "pdf", "docx"]
+
+# LangGraph Configuration
+langgraph:
+  max_iterations: 10
+  timeout_seconds: 30
+  enable_debug: true
+  
+# Prompts Configuration
+prompts:
+  directory: "prompts"
+  default_language: "en"
+  
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/hybridrag.log"
+  max_file_size: "10MB"
+  backup_count: 5
